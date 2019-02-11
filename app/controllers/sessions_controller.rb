@@ -5,9 +5,14 @@ class SessionsController < ApplicationController
   end
 
   post '/sessions' do
-    #raise params.inspect
-    session[:email] = params[:email]
-    #raise params[:email].inspect
+    # login a user with this email
+    # session[:email] = params[:email]
+    login(params[:email], params[:password])
+    redirect '/posts'
+  end
+
+  get '/logout' do
+    logout!
     redirect '/posts'
   end
 
